@@ -14,8 +14,8 @@ const Signup = () => {
         email,
         password
       );
-      const user = userCredential.user;
-      // Reste du code...
+        const user = userCredential.user;
+        setError("Done Signup")
     } catch (error) {
       setError(error.message);
     }
