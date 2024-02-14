@@ -1,9 +1,7 @@
 // Import the functions you need from the SDKs you need
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDF9TMl0-uZBLh-CqEUFc-nqIokKdiNS5c",
   authDomain: "hetic-58f98.firebaseapp.com",
@@ -11,8 +9,13 @@ const firebaseConfig = {
   storageBucket: "hetic-58f98.appspot.com",
   messagingSenderId: "199403566102",
   appId: "1:199403566102:web:0c12574edb49d27bff7137",
-  measurementId: "G-0ESZLLZWZR"
+  measurementId: "G-0ESZLLZWZR",
 };
-export default firebaseConfig;
 
 // Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Get the Auth service for the default app
+const auth = getAuth(app);
+
+export { app, auth };

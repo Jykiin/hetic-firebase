@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { auth } from "../firebase";
-import styles from "../styles/Login.module.css";
+import { auth } from "../firebase.conf";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -17,21 +16,27 @@ export default function Login() {
   };
 
   return (
-    <div className={styles.login}>
+    <div className="w-72 m-auto p-5 border border-gray-300">
       <form>
         <input
+          className="w-full p-2 mb-3 border border-gray-300"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
         />
         <input
+          className="w-full p-2 mb-3 border border-gray-300"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <button type="submit" onClick={signIn}>
+        <button
+          className="w-full p-2 border border-gray-300"
+          type="submit"
+          onClick={signIn}
+        >
           Sign In
         </button>
       </form>
