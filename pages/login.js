@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase.conf";
 
 export default function Login() {
@@ -7,10 +8,9 @@ export default function Login() {
 
   const signIn = (e) => {
     e.preventDefault();
-    auth
-      .signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((auth) => {
-        // Redirect to homepage...
+        alert("Done Login")
       })
       .catch((error) => alert(error.message));
   };
