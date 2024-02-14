@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyDF9TMl0-uZBLh-CqEUFc-nqIokKdiNS5c",
   authDomain: "hetic-58f98.firebaseapp.com",
@@ -17,5 +18,6 @@ const app = initializeApp(firebaseConfig);
 
 // Get the Auth service for the default app
 const auth = getAuth(app);
+const db = getFirestore(app);
 const storage = getStorage(app, "gs://hetic-58f98.appspot.com");
-export { app, auth, storage };
+export { app, auth, storage, db };
