@@ -13,7 +13,7 @@ export default function Upload() {
   const onUpload = async () => {
     const storageRef = ref(storage, file.name);
     await uploadBytes(storageRef, file);
-    console.log("File uploaded successfully");
+    alert("File uploaded successfully");
   };
 
   return (
