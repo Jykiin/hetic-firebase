@@ -17,5 +17,5 @@ const app = initializeApp(firebaseConfig);
 
 // Get the Auth service for the default app
 const auth = getAuth(app);
-const storage = getStorage(firebaseApp, "gs://hetic-58f98.appspot.com");
+const storage = getStorage(app, "gs://hetic-58f98.appspot.com");
 export { app, auth, storage };
