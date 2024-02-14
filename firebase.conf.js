@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-
+import { getStorage } from "firebase/storage";
 const firebaseConfig = {
   apiKey: "AIzaSyDF9TMl0-uZBLh-CqEUFc-nqIokKdiNS5c",
   authDomain: "hetic-58f98.firebaseapp.com",
@@ -17,5 +17,5 @@ const app = initializeApp(firebaseConfig);
 
 // Get the Auth service for the default app
 const auth = getAuth(app);
-
-export { app, auth };
+const storage = getStorage(firebaseApp, "gs://hetic-58f98.appspot.com");
+export { app, auth, storage };
