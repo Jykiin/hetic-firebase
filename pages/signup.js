@@ -8,7 +8,7 @@ import {
   Box,
 } from "@mui/material";
 import "tailwindcss/tailwind.css";
-import { createUser } from "@/controller/signup.controller";
+import { createUser } from "@/controller/auth.controller";
 import Link from "next/link";
 
 const Signup = () => {

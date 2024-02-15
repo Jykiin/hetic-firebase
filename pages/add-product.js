@@ -3,13 +3,16 @@ import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase.conf";
 import "tailwindcss/tailwind.css";
 import Button from "@mui/material/Button";
+import { currentUser } from "@/controller/auth.controller";
+
 import {
   getStorage,
   ref,
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-
+const curentUser = await currentUser();
+const userID = curentUser.user?.uid;
 export default function AddProduct() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -52,6 +55,7 @@ export default function AddProduct() {
       description: description,
       price: price,
       image: fileUrl,
+      userId: userID,
     });
 
     setTitle("");
