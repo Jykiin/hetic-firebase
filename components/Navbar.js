@@ -7,20 +7,27 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import LogoutOutlined from '@mui/icons-material/LogoutOutlined';
+import { signOutUser } from '@/controller/auth.controller';
+import { Button } from '@mui/base';
 
 export default function Navbar() {
 
   const router = useRouter();
-
-  const redirectToLogin = () => {
-    router.push('/login');
+  // Button Functions
+  const handleLogout = async () => {
+    await signOutUser();
+    router.replace('/login')
+  };
+  const handleMyproducts = async () => {
+    await signOutUser();
+    router.replace('/myproducts')
   };
   
   const redirectPanier = () => {
     router.push('/panier');
   }
-
+  // View
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -35,6 +42,7 @@ export default function Navbar() {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Button onClick={handleMyproducts}>Mes produits</Button>
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
@@ -51,10 +59,10 @@ export default function Navbar() {
               aria-label="account of current user"
               // aria-controls={menuId}
               aria-haspopup="true"
-              onClick={redirectToLogin}
+              onClick={handleLogout}
               color="inherit"
             >
-              <AccountCircle />
+              <LogoutOutlined />
             </IconButton>
           </Box>
         </Toolbar>

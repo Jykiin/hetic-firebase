@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase.conf";
+import { useRouter } from 'next/navigation';
 import "tailwindcss/tailwind.css";
 import Button from "@mui/material/Button";
 
 export default function Login() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,7 +14,7 @@ export default function Login() {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        alert("Done Login");
+        router.replace("/");
       })
       .catch((error) => alert(error.message));
   };

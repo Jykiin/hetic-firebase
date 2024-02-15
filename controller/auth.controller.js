@@ -3,6 +3,12 @@ import { addDoc, collection } from "firebase/firestore";
 import User from "@/entities/User";
 import { db, auth } from "@/firebase.conf";
 import { getAuth } from "firebase/auth";
+
+/**
+ * Create New user
+ * @param {Object} info 
+ * @returns 
+ */
 const createUser = (info) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -24,6 +30,21 @@ const createUser = (info) => {
     }
   });
 };
+/**
+ * Logout current user
+ */
+const signOutUser = async () => {
+  try {
+    await auth.signOut();
+    console.log("usdasud");
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+/**
+ * Get current user
+ * @returns Object
+ */
 const currentUser = () => {
   return new Promise(async (resolve, reject) => {
     const auth = getAuth();
@@ -38,4 +59,4 @@ const currentUser = () => {
     });
   });
 };
-export { createUser, currentUser };
+export { createUser, currentUser, signOutUser };
