@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from 'next/router';
 import {
   Button,
   InputLabel,
@@ -13,6 +14,7 @@ import Link from "next/link";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
 const Signup = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -26,7 +28,7 @@ const Signup = () => {
     }
     createUser({ email, password, isSeller: role })
       .then(() => {
-        alert("Success");
+        router.replace("/")
       })
       .catch((err) => {
         alert(err);
