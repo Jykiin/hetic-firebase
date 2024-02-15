@@ -1,6 +1,5 @@
-
 import { Inter } from "next/font/google";
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from "@mui/material/styles";
 import "./globals.css";
 import theme from "@/theme";
 
@@ -15,11 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider
-          theme={theme}
-        >
-            {children}
-        </ThemeProvider>
+        <ThemeProvider theme={theme}>{children}</ThemeProvider>
       </body>
     </html>
   );

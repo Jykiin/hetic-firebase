@@ -41,13 +41,10 @@ export default function Login() {
                 placeholder="Password"
               />
               <div className="flex justify-center">
-                <Button
-                  type="submit"
-                  variant="contained"
-                onClick={signIn}>
-                Sign In
+                <Button type="submit" variant="contained" onClick={signIn}>
+                  Sign In
                 </Button>
-                </div>
+              </div>
               <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don’t have an account yet?{" "}
                 <a
