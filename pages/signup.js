@@ -1,30 +1,35 @@
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase.conf";
-import Button from "@mui/material/Button";
+import {
+  Button,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormControl,
+  Box,
+} from "@mui/material";
 import "tailwindcss/tailwind.css";
+import { createUser } from "@/controller/signup.controller";
+import Link from "next/link";
+
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [role, setRole] = useState("");
   //   const [error, setError] = useState(null);
 
   const handleSignup = async () => {
-    try {
-      if (password !== confirmPassword) {
-        alert("Passwords do not match");
-        return;
-      }
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
-      alert("Done Signup");
-    } catch (error) {
-      alert(error.message);
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
     }
+    createUser({ email, password, isSeller: role })
+      .then((res) => {
+        alert("Success");
+      })
+      .catch((err) => {
+        alert(err);
+      });
   };
 
   return (
@@ -86,19 +91,45 @@ const Signup = () => {
                   required=""
                 />
               </div>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                  <InputLabel
+                    id="demo-simple-select-label"
+                    style={{ color: "#FFFFFF" }}
+                  >
+                    Role
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={role}
+                    label="Role"
+                    onChange={(e) => setRole(e.target.value)}
+                    style={{ color: "#FFFFFF" }}
+                  >
+                    <MenuItem value={0}>Client</MenuItem>
+                    <MenuItem value={1}>Vendeur</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+
               <div className="flex justify-center">
-                  <Button type="submit" variant="contained" onClick={handleSignup}>
-                      Create account
-                  </Button>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  onClick={handleSignup}
+                >
+                  Create account
+                </Button>
               </div>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Already have an account?{" "}
-                <a
+                <Link
                   href="/login"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
                   Login here
-                </a>
+                </Link>
               </p>
             </form>
           </div>
