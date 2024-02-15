@@ -2,23 +2,10 @@ import React from 'react'
 import ProductCard from './Card'
 
 export default function CardsList() {
-
-    // const [data, setData] = useState([]); 
-
-    // useEffect(() => {
-    //   const fetchData = async () => {
-    //     const q = query(collection(db, "product"));
-    //     const collectionRef = collection(db, "product")
-    //     const snapshot = await collectionRef.get();
-    //     const dataArr = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    //     console.log('Data from Firestore:', dataArr);
-    //     setData(dataArr);
-    //   };
-  
-    //   fetchData();
-    // }, []);
-
    
+    const data = [
+        {id: 1, title: 'Tee-shirt blanc', image:'example.jpg', description: 'Couleur blanc ...', price: '30€'}
+    ]
 
     return (
         <div class="flex wrap gap-5 p-10">
