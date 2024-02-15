@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children }) => {
   const router = useRouter();
 
   useEffect(() => {
-      const unsubscribe = auth.onAuthStateChanged(user => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
       if (!user) {
         router.replace('/login'); // Redirect to login page if user is not logged in
       }

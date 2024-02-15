@@ -1,3 +1,24 @@
 {
-  "extends": ["next/core-web-vitals", "prettier"]
+  "extends": ["next/core-web-vitals", "eslint:recommended", "prettier"],
+  "rules": {
+    // Add your own ESLint rules here
+    // Example custom rules:
+    "no-extra-semi": "error",
+    // "quotes": ["error", "both"],
+    "indent": ["error", 2],
+    "camelcase": "error",
+    // "no-var": "error",
+    // "array-bracket-spacing": ["error", "never"],
+    // "arrow-parens": ["error", "always"],
+    "linebreak-style": ["error", "unix"],
+    // "comma-dangle": ["error", "never"],
+    // "eol-last": ["error", "always"],
+    // "arrow-spacing": ["error", { "before": true, "after": true }],
+    "no-unused-vars": "error",
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
+    "object-curly-newline": ["error", { "multiline": true, "consistent": true }],
+    "space-before-blocks": ["error", "always"]
+    // "space-before-function-paren": ["error", "never"],
+    // "space-in-parens": ["error", "never"]
+  }
 }

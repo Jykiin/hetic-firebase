@@ -11,7 +11,7 @@ export default function Login() {
   const signIn = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
-      .then((auth) => {
+      .then(() => {
         alert("Done Login");
       })
       .catch((error) => alert(error.message));
