@@ -11,7 +11,7 @@ import LogoutOutlined from '@mui/icons-material/LogoutOutlined';
 import { currentUser, signOutUser } from '@/controller/auth.controller';
 import { Button } from '@mui/base';
 
-export default function Navbar() {
+export default function Navbar({ quantityInCart }) {
   const [userInfo, setUserInfo] = useState("");
   const router = useRouter();
   const getUserInfo = async () => {
@@ -22,7 +22,7 @@ export default function Navbar() {
     getUserInfo();
   }, [])
   // Button Functions
-  const handleLogout = async () => {
+  const handleLogout = async () => {  
     await signOutUser();
     router.replace('/login')
   };
@@ -59,9 +59,13 @@ export default function Navbar() {
               color="inherit"
               onClick={redirectPanier}
             >
-              <Badge badgeContent={2} color="error">
+              {quantityInCart > 0 ? (
+                <Badge badgeContent={quantityInCart} color="error">
+                  <ShoppingCartIcon />
+                </Badge>
+              ) : (
                 <ShoppingCartIcon />
-              </Badge>
+              )}
             </IconButton>
             <IconButton
               size="large"
