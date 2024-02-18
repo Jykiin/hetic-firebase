@@ -77,6 +77,7 @@ export default function AddProduct() {
     setDescription("");
     setPrice("");
     setFile("");
+    router.push("/my-products");
   };
 
   return (
