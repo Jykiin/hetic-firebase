@@ -11,10 +11,11 @@ import {
   doc,
 } from "firebase/firestore";
 import { db } from "../firebase.conf";
+import Navbar from "@/components/Navbar";
+import { Button } from "@mui/material";
 export default function Products() {
   const router = useRouter(); // Initialize the router
   const [products, setProducts] = useState([]);
-  const [userId, setUserId] = useState(null);
   const deleteProduct = async (id) => {
     await deleteDoc(doc(db, "products", id));
     setProducts(products.filter((product) => product.id !== id));
@@ -23,12 +24,20 @@ export default function Products() {
     const id = product.id;
     router.push(`/edit-product/${id}`);
   };
+  /**
+   * Function to add products
+   * @param {Any} e 
+   */
+  const handleAddProduct = (e) => {
+    e.preventDefault();
+    router.push("/add-product")
+  };
+
   useEffect(() => {
     const fetchUserAndData = async () => {
       const user = await currentUser();
-      setUserId(user.user?.uid);
       if (user.user?.isSeller === 0) {
-        router.replace("/");
+        router.push("/");
       }
 
       const q = query(
@@ -47,61 +56,71 @@ export default function Products() {
   }, []);
 
   return (
-    <div className="flex flex-col">
-      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-          <h1 className="mb-5 text-xl text-center font-bold leading-tight tracking-tight  md:text-2xl ">
-            {" "}
-            My products{" "}
-          </h1>
-          <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>Price</th>
-                  <th>Image</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200 text-center">
-                {products.map((product) => (
-                  <tr key={product.id}>
-                    <td>{product.title}</td>
-                    <td>{product.description}</td>
-                    <td>{product.price}</td>
-                    <td className="size-32">
-                      <img
-                        className="size-32"
-                        src={product.image}
-                        alt={product.title}
-                      />
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => editProduct(product)}
-                        className="text-blue-600 hover:text-blue-900"
-                      >
-                        Edit
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => deleteProduct(product.id)}
-                        className="text-red-600 hover:text-red-900"
-                      >
-                        Delete
-                      </button>
-                    </td>
+    <>
+      <Navbar/>
+      <div className="flex flex-col">
+        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="flex justify-center items-center">
+              <h1 className="mb-5 text-xl mr-5 text-center font-bold py-2 pt-7 leading-tight tracking-tight md:text-2xl">
+                My Products
+              </h1>
+              <div>
+                <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                onClick={handleAddProduct}>
+                  Add Product
+                </Button>
+              </div>
+            </div>
+            <div className="shadow overflow-hidden border-b sm:rounded-lg">
+              <table className="min-w-full divide-y">
+                <thead className="">
+                  <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-gray-200 text-center">
+                  {products.map((product) => (
+                    <tr key={product.id}>
+                      <td>{product.title}</td>
+                      <td>{product.description}</td>
+                      <td>{product.price}</td>
+                      <td className="size-32">
+                        <img
+                          className="size-32"
+                          src={product.image}
+                          alt={product.title}
+                        />
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => editProduct(product)}
+                          className="text-blue-600 hover:text-blue-900"
+                        >
+                        Edit
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => deleteProduct(product.id)}
+                          className="text-red-600 hover:text-red-900"
+                        >
+                        Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

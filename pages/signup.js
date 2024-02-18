@@ -33,7 +33,7 @@ const Signup = () => {
     }
     await createUser({ email, password, isSeller: role })
       .then(() => {
-        router.replace("/")
+        router.push("/")
       })
       .catch((err) => {
         alert(err);

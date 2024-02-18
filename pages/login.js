@@ -9,7 +9,7 @@ export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+
   /**
    * Function to sign in 
    * @param {*} e 
@@ -18,7 +18,7 @@ export default function Login() {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        router.replace("/");
+        router.push("/");
       })
       .catch((error) => alert(error.message));
   };

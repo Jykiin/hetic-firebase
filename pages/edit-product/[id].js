@@ -21,7 +21,7 @@ export default function EditProduct() {
     const fetchProduct = async () => {
       const user = await currentUser();
       if (user.user?.isSeller === 0) {
-        router.replace("/");
+        router.push("/");
       }
       if (id) {
         const productRef = doc(db, "products", id);
@@ -124,7 +124,7 @@ export default function EditProduct() {
                 </label>
                 <label className="text-white font-bold">
                   Description:
-                  <input
+                  <textarea
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5"
                     value={updatedProduct.description}
                     name="description"

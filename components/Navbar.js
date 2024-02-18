@@ -24,13 +24,13 @@ export default function Navbar({ quantityInCart }) {
   // Button Functions
   const handleLogout = async () => {  
     await signOutUser();
-    router.replace('/login')
+    router.push('/login')
   };
   const handleMyproducts = async () => {
-    router.replace('/my-products')
+    router.push('/my-products')
   };
   const handleMyCart = async () => {
-    router.replace('/painer')
+    router.push('/painer')
   };
   
   const redirectPanier = () => {
@@ -51,8 +51,7 @@ export default function Navbar({ quantityInCart }) {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-          <Button onClick={handleMyCart}>Painer</Button>
-            {userInfo.isSeller == 1 && (<Button onClick={handleMyproducts}>Mes produits</Button>)}
+            {userInfo.user?.isSeller == 1 && (<Button onClick={handleMyproducts}>Mes produits</Button>)}
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
