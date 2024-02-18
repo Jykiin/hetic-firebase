@@ -1,7 +1,8 @@
+
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where} from "firebase/firestore";
 import User from "@/entities/User";
-import { db, auth } from "@/firebase.conf";
+import { db, auth } from "../firebase.conf";
 import { getAuth } from "firebase/auth";
 
 /**
@@ -36,10 +37,30 @@ const createUser = (info) => {
 const signOutUser = async () => {
   try {
     await auth.signOut();
-    console.log("usdasud");
   } catch (error) {
     throw new Error(error);
   }
+};
+/**
+ * Get current user Description
+ * @returns Object
+ */
+const getUserDesc = (uid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const q = query(
+        collection(db, "users"),
+        where("uid", "==", uid),
+      );
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+      }));
+      resolve(data[0]);
+    } catch (err) {
+      reject(err);
+    }
+  });
 };
 /**
  * Get current user
@@ -49,9 +70,11 @@ const currentUser = () => {
   return new Promise(async (resolve, reject) => {
     const auth = getAuth();
     var isSignedIn = false;
-    auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged(async(user) => {
       if (user) {
         isSignedIn = true;
+        const userDesc = await getUserDesc(user.uid);
+        user["isSeller"] = userDesc.isSeller || 0;
         resolve({ isSignedIn, user });
       } else {
         resolve({ isSignedIn, user });
@@ -59,4 +82,5 @@ const currentUser = () => {
     });
   });
 };
+
 export { createUser, currentUser, signOutUser };

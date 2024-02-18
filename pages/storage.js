@@ -9,7 +9,10 @@ export default function Upload() {
   const onFileChange = (e) => {
     setFile(e.target.files[0]);
   };
-
+  
+  /**
+  * Function to handle upload change
+  */
   const onUpload = async () => {
     const storageRef = ref(storage, file.name);
     await uploadBytes(storageRef, file);

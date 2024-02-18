@@ -11,7 +11,6 @@ import {
 import "tailwindcss/tailwind.css";
 import { createUser } from "@/controller/auth.controller";
 import Link from "next/link";
-import ProtectedRoute from "@/components/ProtectedRoute";
 
 const Signup = () => {
   const router = useRouter();
@@ -21,12 +20,18 @@ const Signup = () => {
   const [role, setRole] = useState("");
   //   const [error, setError] = useState(null);
 
-  const handleSignup = async () => {
+  /**
+   * Function to handle Sign up
+   * @param {*} e 
+   * @returns 
+   */
+  const handleSignup = async (e) => {
+    e.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
-    createUser({ email, password, isSeller: role })
+    await createUser({ email, password, isSeller: role })
       .then(() => {
         router.replace("/")
       })
