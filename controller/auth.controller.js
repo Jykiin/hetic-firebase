@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import User from "@/entities/User";
-import { db, auth } from "@/firebase.conf";
+import { db, auth } from "../firebase.conf";
 import { getAuth } from "firebase/auth";
 
 /**
