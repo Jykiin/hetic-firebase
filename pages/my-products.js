@@ -20,10 +20,8 @@ export default function Products() {
     setProducts(products.filter((product) => product.id !== id));
   };
   const editProduct = (product) => {
-    router.push({
-      pathname: `/edit-product/${product.id}`,
-      query: { product: JSON.stringify(product) },
-    });
+    const id = product.id;
+    router.push(`/edit-product/${id}`);
   };
   useEffect(() => {
     const fetchUserAndData = async () => {
