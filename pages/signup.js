@@ -20,6 +20,11 @@ const Signup = () => {
   const [role, setRole] = useState("");
   //   const [error, setError] = useState(null);
 
+  /**
+   * Function to handle Sign up
+   * @param {*} e 
+   * @returns 
+   */
   const handleSignup = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {

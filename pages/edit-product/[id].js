@@ -32,6 +32,11 @@ export default function EditProduct() {
 
     fetchProduct();
   }, [id]);
+
+  /**
+   * Function to change file
+   * @param {*} e 
+   */
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     const fileType = file.type;
@@ -51,6 +56,11 @@ export default function EditProduct() {
       e.target.value = "";
     }
   };
+
+  /**
+   * Function to handle change in form
+   * @param {*} event 
+   */
   const handleChange = (event) => {
     setUpdatedProduct({
       ...updatedProduct,
@@ -58,6 +68,10 @@ export default function EditProduct() {
     });
   };
 
+  /**
+   * Function to handle submit button
+   * @param {*} event 
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
     const productRef = doc(db, "products", id);

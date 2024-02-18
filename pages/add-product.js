@@ -19,6 +19,11 @@ export default function AddProduct() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [file, setFile] = useState(null);
+
+  /**
+   * Function to choose files
+   * @param {*} e 
+   */
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     const fileType = file.type;
@@ -35,6 +40,11 @@ export default function AddProduct() {
       e.target.value = "";
     }
   };
+  
+  /**
+   * Submit Function
+   * @param {*} e 
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
