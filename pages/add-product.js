@@ -5,7 +5,7 @@ import "tailwindcss/tailwind.css";
 import Button from "@mui/material/Button";
 import { currentUser } from "@/controller/auth.controller";
 import { v4 as uuidv4 } from "uuid";
-
+import { useRouter } from "next/router";
 import {
   getStorage,
   ref,
@@ -15,6 +15,10 @@ import {
 const curentUser = await currentUser();
 const userID = curentUser.user?.uid;
 export default function AddProduct() {
+  const router = useRouter();
+  if (curentUser.user?.isSeller === 0) {
+    router.replace("/");
+  }
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -22,7 +26,7 @@ export default function AddProduct() {
 
   /**
    * Function to choose files
-   * @param {*} e 
+   * @param {*} e
    */
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -40,10 +44,10 @@ export default function AddProduct() {
       e.target.value = "";
     }
   };
-  
+
   /**
    * Submit Function
-   * @param {*} e 
+   * @param {*} e
    */
   const handleSubmit = async (e) => {
     e.preventDefault();

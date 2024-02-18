@@ -27,6 +27,9 @@ export default function Products() {
     const fetchUserAndData = async () => {
       const user = await currentUser();
       setUserId(user.user?.uid);
+      if (user.user?.isSeller === 0) {
+        router.replace("/");
+      }
 
       const q = query(
         collection(db, "products"),
@@ -37,7 +40,6 @@ export default function Products() {
         id: doc.id,
         ...doc.data(),
       }));
-
       setProducts(data);
     };
 

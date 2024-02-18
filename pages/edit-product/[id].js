@@ -4,7 +4,8 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase.conf";
 import Button from "@mui/material/Button";
 import "tailwindcss/tailwind.css";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
+import { currentUser } from "@/controller/auth.controller";
 import {
   getStorage,
   ref,
@@ -18,6 +19,10 @@ export default function EditProduct() {
 
   useEffect(() => {
     const fetchProduct = async () => {
+      const user = await currentUser();
+      if (user.user?.isSeller === 0) {
+        router.replace("/");
+      }
       if (id) {
         const productRef = doc(db, "products", id);
         const productSnap = await getDoc(productRef);
@@ -35,7 +40,7 @@ export default function EditProduct() {
 
   /**
    * Function to change file
-   * @param {*} e 
+   * @param {*} e
    */
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -59,7 +64,7 @@ export default function EditProduct() {
 
   /**
    * Function to handle change in form
-   * @param {*} event 
+   * @param {*} event
    */
   const handleChange = (event) => {
     setUpdatedProduct({
@@ -70,7 +75,7 @@ export default function EditProduct() {
 
   /**
    * Function to handle submit button
-   * @param {*} event 
+   * @param {*} event
    */
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -79,7 +84,7 @@ export default function EditProduct() {
     let imageUrl = updatedProduct.image;
     if (updatedProduct.image instanceof File) {
       const storage = getStorage();
-      const storageRef =ref(storage, `products/${uuidv4()}`);
+      const storageRef = ref(storage, `products/${uuidv4()}`);
       const uploadTask = uploadBytesResumable(storageRef, updatedProduct.image);
 
       await uploadTask.then((snapshot) => {
