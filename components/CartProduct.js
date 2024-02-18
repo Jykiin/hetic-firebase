@@ -1,5 +1,6 @@
 import { Card, Box, Typography, IconButton, CardMedia, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import "tailwindcss/tailwind.css";
 
 export default function CartProduct({ id, title, image, price, quantity, size }) {
   return (
@@ -28,31 +29,14 @@ export default function CartProduct({ id, title, image, price, quantity, size })
                     <Typography className="text-sm font-medium" variant="subtitle2">Price</Typography>
                     <Typography variant="subtitle1">{price}€</Typography>
                   </Box>
-                  <Box className="flex flex-col min-w-[120px] pr-8">
+                  {/* <Box className="flex flex-col min-w-[120px] pr-8">
                     <Typography className="text-sm font-medium" variant="subtitle2">Quantity</Typography>
-                    {/* <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                      <InputLabel id="product-quantity">Quantity</InputLabel>
-                      <Select
-                        labelId="select-product-quantity"
-                        id="select-quantity"
-                        value={quantity}
-                        label="Quantity"
-                        style={{ color: "white" }}
-                      >
-                        <MenuItem value="" style={{ color: "white" }}>
-                          <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                      </Select>
-                    </FormControl> */}
                     <Typography variant="subtitle1">{quantity}</Typography>
                   </Box>
                   <Box className="flex flex-col min-w-[120px] pr-8">
                     <Typography className="text-sm font-medium" variant="subtitle2">Size</Typography>
                     <Typography variant="subtitle1">{size}</Typography>
-                  </Box>
+                  </Box> */}
                 </Box>
               </Box>
             </Box>
