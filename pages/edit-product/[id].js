@@ -4,6 +4,7 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase.conf";
 import Button from "@mui/material/Button";
 import "tailwindcss/tailwind.css";
+import { v4 as uuidv4 } from 'uuid';
 import {
   getStorage,
   ref,
@@ -64,7 +65,7 @@ export default function EditProduct() {
     let imageUrl = updatedProduct.image;
     if (updatedProduct.image instanceof File) {
       const storage = getStorage();
-      const storageRef = ref(storage, `products/${updatedProduct.image.name}`);
+      const storageRef =ref(storage, `products/${uuidv4()}`);
       const uploadTask = uploadBytesResumable(storageRef, updatedProduct.image);
 
       await uploadTask.then((snapshot) => {

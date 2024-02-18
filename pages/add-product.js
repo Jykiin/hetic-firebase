@@ -4,6 +4,7 @@ import { db } from "../firebase.conf";
 import "tailwindcss/tailwind.css";
 import Button from "@mui/material/Button";
 import { currentUser } from "@/controller/auth.controller";
+import { v4 as uuidv4 } from "uuid";
 
 import {
   getStorage,
@@ -40,7 +41,7 @@ export default function AddProduct() {
     let fileUrl = "";
     const storage = getStorage();
     if (file) {
-      const storageRef = ref(storage, `products/${file.name}`);
+      const storageRef = ref(storage, `products/${uuidv4()}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
 
       await uploadTask.then((snapshot) => {
