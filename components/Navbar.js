@@ -15,7 +15,7 @@ export default function Navbar({ quantityInCart }) {
   const [userInfo, setUserInfo] = useState("");
   const router = useRouter();
   // Button Functions
-  const handleLogout = async () => {
+  const handleLogout = async () => {  
     await signOutUser();
     router.replace('/login')
   };
