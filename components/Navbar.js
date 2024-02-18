@@ -47,7 +47,7 @@ export default function Navbar({ quantityInCart }) {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-          HETIC E-Commerce
+          <a href="/">HETIC E-Commerce</a> 
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>

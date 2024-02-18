@@ -36,7 +36,7 @@ export default function ProductCard({setQuantityInCart, setCart, cart, title, im
       />
       <CardMedia
         component="img"
-        height="194"
+        className='max-h-40'
         image={ image }
       />
       <CardContent>
