@@ -12,7 +12,7 @@ import { signOutUser } from '@/controller/auth.controller';
 import { Button } from '@mui/base';
 
 export default function Navbar({ quantityInCart }) {
-
+  const [userInfo, setUserInfo] = useState("");
   const router = useRouter();
   // Button Functions
   const handleLogout = async () => {
