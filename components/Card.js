@@ -47,6 +47,7 @@ export default function ProductCard({ setQuantityInCart, setCart, cart, title, i
         component="img"
         height="194"
         image={image}
+        className='max-h-40'
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">

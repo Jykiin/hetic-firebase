@@ -111,6 +111,7 @@ export default function AddProduct() {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 placeholder="Price"
+                min={0}
                 required
               />
               <input
